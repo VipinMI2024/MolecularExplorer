@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Molecule Viewer</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    #viewer {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-color: #1c1c1c;
+    }
+    .overlay {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="viewer"></div>
+
+<div class="overlay">
+  <h1>3D Molecule Viewer</h1>
+  <form method="get" action="/">
+    <input type="text" name="mol" value="{{ molecule }}" placeholder="Enter CID or formula">
+    <button type="submit">Load Molecule</button>
+  </form>
+</div>
+
+<script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+<script>
+  const viewer = $3Dmol.createViewer("viewer", { backgroundColor: "#1c1c1c" });
+
+  const molInput = "{{ molecule }}";
+
+  $3Dmol.download(`cid:${molInput}`, viewer, {}, function () {
+    viewer.setStyle({}, {stick: {}, sphere: {scale: 0.3}});
+    viewer.zoomTo();
+    viewer.spin(true);
+    viewer.render();
+  });
+</script>
+
+</body>
+</html>
