@@ -50,21 +50,7 @@ streamlit run molecular_explorer.py
 
 ---
 
-## 📊 Dependencies
 
-* Python >= 3.8
-* Streamlit
-* RDKit
-* py3Dmol
-* spaCy
-* Requests
-* re
-
-```bash
-pip install streamlit rdkit py3dmol spacy requests
-```
-
----
 
 ## 🔍 Example
 
