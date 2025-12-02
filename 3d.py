@@ -372,5 +372,4 @@ async def start():
     finally:
         loading_text.is_visible = False
 
-# Run the start function
 asyncio.run(start())
